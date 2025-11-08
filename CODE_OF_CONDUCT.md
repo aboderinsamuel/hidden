@@ -53,32 +53,6 @@ I'm not running a corporate HR department here, I'm just trying to keep closedNo
 
 ---
 
-## 💡 Quick Examples
-
-### ✅ Good vibes:
-- "Hey, I think the search could work better if we tried X, here's why..."
-- "I'm new to this, can someone explain how tags work?"
-- "Found a bug! Here's the screenshot and what I was doing"
-- "Cool feature! Maybe we could also add Y to make it even better?"
-
-### ❌ Bad vibes:
-- "This code is garbage, who wrote this?"
-- "Just use Google, stop asking dumb questions"
-- "Why are you even here if you don't know React?"
-- Starting arguments about unrelated politics/religion/drama
-
----
-
-## 🌍 Where This Applies
-
-Anywhere closedNote exists:
-- GitHub (issues, PRs, discussions)
-- Social media when talking about the project
-- Emails and DMs about closedNote
-- If we ever have meetups or events
-
----
-
 ## 🙏🏽 The Spirit of It
 
 I didn't build closedNote to gatekeep or create some exclusive club. I built it because **my mum, my grandma, my classmates, and I** all needed a simple way to save prompts.
