@@ -41,7 +41,7 @@ Don't be that person who:
 
 Look, I'm just a Computer Engineering student trying to build something cool. If someone's making the community toxic or uncomfortable:
 
-**Email me directly: [samuelaboderin@gmail.com](mailto:samuelaboderin@gmail.com)**
+**Email me directly: [aboderinseun01@gmail.com](mailto:aboderinseun01@gmail.com)**
 
 I'll:
 1. Read what happened
