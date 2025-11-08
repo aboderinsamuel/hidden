@@ -7,6 +7,7 @@ import {
   logoutUser,
   registerUser,
   authenticateUser,
+  onAuthStateChange,
 } from "@/lib/auth";
 
 interface AuthContextValue {
@@ -21,7 +22,7 @@ interface AuthContextValue {
     password: string,
     displayName?: string
   ) => Promise<{ ok: true } | { ok: false; error: string }>;
-  logout: () => void;
+  logout: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextValue | undefined>(undefined);
@@ -33,27 +34,54 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setUser(getCurrentUser());
-    setLoading(false);
+    // Initialize user from session
+    getCurrentUser().then((currentUser) => {
+      console.log("[AuthProvider] Initial user:", currentUser);
+      setUser(currentUser);
+      setLoading(false);
+    });
+
+    // Listen to auth state changes
+    const unsubscribe = onAuthStateChange((updatedUser) => {
+      console.log("[AuthProvider] Auth state changed:", updatedUser);
+      setUser(updatedUser);
+    });
+
+    return () => {
+      unsubscribe();
+    };
   }, []);
 
   const login = async (email: string, password: string) => {
+    console.log("[AuthProvider] Attempting login for:", email);
     const res = await authenticateUser(email, password);
-    if (res.ok) setUser(getCurrentUser());
+    console.log("[AuthProvider] Login result:", res);
+    if (res.ok) {
+      const currentUser = await getCurrentUser();
+      console.log("[AuthProvider] User after login:", currentUser);
+      setUser(currentUser);
+    }
     return res;
   };
+
   const signup = async (
     email: string,
     password: string,
     displayName?: string
   ) => {
     const res = await registerUser(email, password, displayName);
-    if (res.ok) setUser(getCurrentUser());
+    if (res.ok) {
+      const currentUser = await getCurrentUser();
+      setUser(currentUser);
+    }
     return res;
   };
-  const logout = () => {
-    logoutUser();
+
+  const logout = async () => {
+    await logoutUser();
     setUser(null);
+    // Force immediate redirect
+    window.location.href = "/login";
   };
 
   return (

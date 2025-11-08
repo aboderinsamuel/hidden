@@ -1,0 +1,98 @@
+export type Json =
+  | string
+  | number
+  | boolean
+  | null
+  | { [key: string]: Json | undefined }
+  | Json[]
+
+export interface Database {
+  public: {
+    Tables: {
+      users: {
+        Row: {
+          id: string
+          email: string
+          display_name: string
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id: string
+          email: string
+          display_name: string
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          email?: string
+          display_name?: string
+          created_at?: string
+          updated_at?: string
+        }
+      }
+      prompts: {
+        Row: {
+          id: string
+          user_id: string
+          title: string
+          content: string
+          model: string
+          collection: string
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          user_id: string
+          title: string
+          content: string
+          model: string
+          collection: string
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          user_id?: string
+          title?: string
+          content?: string
+          model?: string
+          collection?: string
+          created_at?: string
+          updated_at?: string
+        }
+      }
+      tags: {
+        Row: {
+          id: string
+          prompt_id: string
+          tag: string
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          prompt_id: string
+          tag: string
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          prompt_id?: string
+          tag?: string
+          created_at?: string
+        }
+      }
+    }
+    Views: {
+      [_ in never]: never
+    }
+    Functions: {
+      [_ in never]: never
+    }
+    Enums: {
+      [_ in never]: never
+    }
+  }
+}

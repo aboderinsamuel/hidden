@@ -6,11 +6,12 @@ import { useRouter } from "next/navigation";
 import { Header } from "@/components/Header";
 import { Layout } from "@/components/Layout";
 import { useAuth } from "@/components/AuthProvider";
-import { getAllPrompts } from "@/lib/promptData";
+import { usePrompts } from "@/lib/hooks/usePrompts";
 
 export default function SignupPage() {
   const { signup } = useAuth();
   const router = useRouter();
+  const { prompts } = usePrompts();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [displayName, setDisplayName] = useState("");
@@ -23,10 +24,8 @@ export default function SignupPage() {
     else router.push("/");
   };
 
-  const promptCount = getAllPrompts().length;
-
   return (
-    <Layout header={<Header promptCount={promptCount} />} sidebar={null}>
+    <Layout header={<Header promptCount={prompts.length} />} sidebar={null}>
       <div className="max-w-sm mx-auto">
         <h1 className="text-2xl font-semibold text-neutral-900 dark:text-neutral-100 mb-4">
           Sign up

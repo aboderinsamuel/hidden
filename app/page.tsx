@@ -2,20 +2,17 @@
 
 import { Suspense } from "react";
 import { useState, useMemo, useEffect } from "react";
-import {
-  getAllPrompts,
-  groupPromptsByCollection,
-  filterPrompts,
-} from "@/lib/promptData";
+import { groupPromptsByCollection, filterPrompts } from "@/lib/promptData";
 import { Prompt, PromptModel } from "@/lib/types";
 import { Header } from "@/components/Header";
 import { Sidebar } from "@/components/Sidebar";
 import { Layout } from "@/components/Layout";
 import { PromptCollection } from "@/components/PromptCollection";
 import { UseCasesShowcase } from "@/components/UseCasesShowcase";
+import { usePrompts } from "@/lib/hooks/usePrompts";
 
 function HomeContent() {
-  const [allPrompts, setAllPrompts] = useState<Prompt[]>([]);
+  const { prompts: allPrompts, loading, error } = usePrompts();
   const [searchQuery, setSearchQuery] = useState("");
   const [filters, setFilters] = useState<{
     query: string;
@@ -27,24 +24,11 @@ function HomeContent() {
   const [activeTag, setActiveTag] = useState<string | undefined>();
 
   useEffect(() => {
-    const loadPrompts = () => {
-      setAllPrompts(getAllPrompts());
-    };
-
-    loadPrompts();
-
-    const handleFocus = () => {
-      loadPrompts();
-    };
-
     const urlParams = new URLSearchParams(window.location.search);
     const collection = urlParams.get("collection");
     if (collection) setActiveCollection(collection);
     const tag = urlParams.get("tag");
     if (tag) setActiveTag(tag);
-
-    window.addEventListener("focus", handleFocus);
-    return () => window.removeEventListener("focus", handleFocus);
   }, []);
 
   useEffect(() => {
@@ -77,7 +61,14 @@ function HomeContent() {
         ) : null
       }
     >
-      {allPrompts.length === 0 ? (
+      {error ? (
+        <div className="max-w-2xl mx-auto">
+          <div className="p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg text-red-700 dark:text-red-400">
+            <p className="font-medium">Failed to load prompts</p>
+            <p className="text-sm mt-1">{error}</p>
+          </div>
+        </div>
+      ) : allPrompts.length === 0 ? (
         <div className="max-w-2xl mx-auto">
           <div className="text-center mb-8">
             <h1 className="font-serif-title text-5xl font-normal text-neutral-900 dark:text-neutral-100 mb-4">

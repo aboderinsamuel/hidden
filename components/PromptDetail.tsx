@@ -16,6 +16,8 @@ export function PromptDetail({ prompt }: PromptDetailProps) {
   const [title, setTitle] = useState(prompt.title);
   const [content, setContent] = useState(prompt.content);
   const [tags, setTags] = useState((prompt.tags || []).join(", "));
+  const [saving, setSaving] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const router = useRouter();
 
   const handleCopy = async () => {
@@ -24,28 +26,44 @@ export function PromptDetail({ prompt }: PromptDetailProps) {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  const handleDelete = () => {
-    if (confirm("Delete this prompt? This cannot be undone.")) {
-      deletePrompt(prompt.id);
+  const handleDelete = async () => {
+    if (!confirm("Delete this prompt? This cannot be undone.")) return;
+
+    try {
+      await deletePrompt(prompt.id);
       router.push("/");
+    } catch (err) {
+      setError("Failed to delete prompt. Please try again.");
+      console.error("Error deleting prompt:", err);
     }
   };
 
-  const handleSave = () => {
-    const now = new Date().toISOString();
-    const updated = {
-      ...prompt,
-      title: title.trim() || prompt.title,
-      content: content.trim() || prompt.content,
-      tags: tags
-        .split(",")
-        .map((t) => t.trim())
-        .filter((t) => t.length > 0),
-      updatedAt: now,
-    };
-    savePrompt(updated);
-    setEditing(false);
-    router.refresh();
+  const handleSave = async () => {
+    setSaving(true);
+    setError(null);
+
+    try {
+      const now = new Date().toISOString();
+      const updated = {
+        ...prompt,
+        title: title.trim() || prompt.title,
+        content: content.trim() || prompt.content,
+        tags: tags
+          .split(",")
+          .map((t) => t.trim())
+          .filter((t) => t.length > 0),
+        updatedAt: now,
+      };
+
+      await savePrompt(updated);
+      setEditing(false);
+      router.refresh();
+    } catch (err) {
+      setError("Failed to save changes. Please try again.");
+      console.error("Error saving prompt:", err);
+    } finally {
+      setSaving(false);
+    }
   };
 
   return (
@@ -56,6 +74,11 @@ export function PromptDetail({ prompt }: PromptDetailProps) {
       >
         ← Back to prompts
       </Link>
+      {error && (
+        <div className="p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg text-red-700 dark:text-red-400 text-sm">
+          {error}
+        </div>
+      )}
       <div className="bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-lg p-6">
         {editing ? (
           <input
@@ -124,9 +147,10 @@ export function PromptDetail({ prompt }: PromptDetailProps) {
               />
               <button
                 onClick={handleSave}
-                className="px-4 py-2 bg-green-600 hover:bg-green-500 text-white text-sm font-medium rounded-md"
+                disabled={saving}
+                className="px-4 py-2 bg-green-600 hover:bg-green-500 text-white text-sm font-medium rounded-md disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Save
+                {saving ? "Saving..." : "Save"}
               </button>
               <button
                 onClick={() => setEditing(false)}

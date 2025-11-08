@@ -4,10 +4,10 @@ import { UseCasesShowcase } from "@/components/UseCasesShowcase";
 import { Header } from "@/components/Header";
 import { Sidebar } from "@/components/Sidebar";
 import { Layout } from "@/components/Layout";
-import { getAllPrompts } from "@/lib/promptData";
+import { usePrompts } from "@/lib/hooks/usePrompts";
 
 export default function MarketingHome() {
-  const prompts = getAllPrompts();
+  const { prompts } = usePrompts();
   return (
     <Layout header={<Header promptCount={prompts.length} />} sidebar={null}>
       <div className="max-w-3xl mx-auto py-8">

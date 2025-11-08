@@ -1,21 +1,16 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import Link from "next/link";
 import { PromptForm } from "@/components/PromptForm";
 import { Header } from "@/components/Header";
 import { Layout } from "@/components/Layout";
-import { getAllPrompts } from "@/lib/promptData";
+import { usePrompts } from "@/lib/hooks/usePrompts";
 
 export default function NewPromptPage() {
-  const [promptCount, setPromptCount] = useState(0);
-
-  useEffect(() => {
-    setPromptCount(getAllPrompts().length);
-  }, []);
+  const { prompts } = usePrompts();
 
   return (
-    <Layout header={<Header promptCount={promptCount} />} sidebar={null}>
+    <Layout header={<Header promptCount={prompts.length} />} sidebar={null}>
       <div className="max-w-2xl mx-auto">
         <Link
           href="/"

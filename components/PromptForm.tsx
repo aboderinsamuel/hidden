@@ -14,36 +14,56 @@ export function PromptForm() {
   const [model, setModel] = useState<PromptModel>("gpt-4");
   const [collection, setCollection] = useState("");
   const [tags, setTags] = useState("");
+  const [saving, setSaving] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+
     if (!user) {
-      alert("Please log in to create prompts.");
       router.push("/login");
       return;
     }
-    const id = crypto.randomUUID();
-    const tagArray = tags
-      .split(",")
-      .map((t) => t.trim())
-      .filter((t) => t.length > 0);
-    const now = new Date().toISOString();
-    const newPrompt = {
-      id,
-      title,
-      content,
-      model,
-      collection: collection.trim() || "uncategorized",
-      tags: tagArray.length > 0 ? tagArray : undefined,
-      createdAt: now,
-      updatedAt: now,
-    };
-    savePrompt(newPrompt);
-    router.push("/");
+
+    setSaving(true);
+    setError(null);
+
+    try {
+      const id = crypto.randomUUID();
+      const tagArray = tags
+        .split(",")
+        .map((t) => t.trim())
+        .filter((t) => t.length > 0);
+      const now = new Date().toISOString();
+
+      const newPrompt = {
+        id,
+        title,
+        content,
+        model,
+        collection: collection.trim() || "uncategorized",
+        tags: tagArray.length > 0 ? tagArray : undefined,
+        createdAt: now,
+        updatedAt: now,
+      };
+
+      await savePrompt(newPrompt);
+      router.push("/");
+    } catch (err) {
+      setError("Failed to save prompt. Please try again.");
+      console.error("Error saving prompt:", err);
+    } finally {
+      setSaving(false);
+    }
   };
 
   return (
     <div className="bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-lg p-6">
+      {error && (
+        <div className="mb-4 p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg text-red-700 dark:text-red-400 text-sm">
+          {error}
+        </div>
+      )}
       <form onSubmit={handleSubmit} className="space-y-6">
         <div>
           <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
@@ -115,9 +135,10 @@ export function PromptForm() {
         </div>
         <button
           type="submit"
-          className="w-full px-4 py-3 bg-neutral-900 hover:bg-neutral-800 dark:bg-neutral-100 dark:hover:bg-neutral-200 dark:text-neutral-900 text-white font-medium rounded-full transition-colors"
+          disabled={saving}
+          className="w-full px-4 py-3 bg-neutral-900 hover:bg-neutral-800 dark:bg-neutral-100 dark:hover:bg-neutral-200 dark:text-neutral-900 text-white font-medium rounded-full transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          Save prompt
+          {saving ? "Saving..." : "Save prompt"}
         </button>
       </form>
     </div>
