@@ -1,32 +1,33 @@
 ---
 name: Feature request
-about: Suggest an idea for closedNote
+about: Got an idea? I'm listening!
 title: '[FEATURE] '
 labels: enhancement
 assignees: ''
 ---
 
-## 💡 Feature Description
-A clear and concise description of the feature you'd like to see.
+## 💡 What Do You Want?
+Describe the feature you'd love to see in closedNote.
 
-## 🎯 Problem it Solves
-Describe the problem this feature would solve. Ex: I'm always frustrated when [...]
+## 🎯 What Problem Does This Solve?
+Why do you need this? What's frustrating you right now?  
+Ex: "I'm always frustrated when I can't find my old prompts from last month..."
 
-## 🚀 Proposed Solution
-Describe how you envision this feature working.
+## 🚀 How Should It Work?
+Walk me through it. What would the perfect version of this look like?
 
-## 🔄 Alternative Solutions
-Describe any alternative solutions or features you've considered.
+## 🔄 Any Other Ways to Do It?
+Have you thought of alternative solutions? Other ways this could work?
 
-## 📸 Mockups / Examples
-If applicable, add mockups, sketches, or examples from other apps.
+## 📸 Show Me What You Mean
+Got a sketch? A screenshot from another app? A napkin drawing? Share it!
 
-## ✨ Benefits
-- Who would benefit from this feature?
-- How would it improve closedNote?
+## ✨ Who Benefits?
+- Who would use this feature the most?
+- How would it make closedNote better?
 
-## 🧠 Additional Context
-Add any other context, links, or references about the feature request here.
+## 🧠 Anything Else?
+Links, references, examples, whatever helps me understand your vision.
 
-## 🏷️ Related Features
-Any existing features this builds upon or relates to?
+## 🏷️ Does This Build on Anything?
+Is there an existing feature this connects to or expands?

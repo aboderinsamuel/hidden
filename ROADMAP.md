@@ -1,157 +1,162 @@
-# 🗺️ closedNote Roadmap
+# 🗺️ Where closedNote is Going
 
-> This roadmap outlines the vision and planned features for closedNote. It's a living document that will evolve based on community feedback and contributions.
-
----
-
-## 🎯 Vision
-
-Make closedNote the **easiest and most reliable way to save, organize, and reuse AI prompts** for everyone, from students to professionals, from grandmas to prompt engineers.
+> The plan for the future (but it's flexible, we'll see where the community takes us)
 
 ---
 
-## 📍 Current State (v0.1)
+## 🎯 The Big Picture
 
-✅ **Core Features Shipped**
-- User authentication (email/password via Supabase)
-- Create, read, update, delete prompts
-- Tag-based organization
-- Collection grouping
-- Search and filter functionality
-- Mobile-responsive design
-- Global command palette (Ctrl/Cmd+K)
-- Dark mode support
-- One-click copy to clipboard
+Make closedNote the **go-to place for saving and organizing AI prompts**, whether you're a student cramming for exams, my mum trying to remember her favorite ChatGPT prompts, or a prompt engineer building the next big thing.
+
+Simple, reliable, and useful for **everyone**.
 
 ---
 
-## 🚀 Phase 1: Polish & Stability (Next 3 months)
+## 📍 Where We Are Now (v0.1)
 
-### High Priority
-- [ ] **Offline-first architecture** - Work without internet, sync when back online
-- [ ] **Export/Import prompts** - JSON/CSV export for backup and portability
-- [ ] **Prompt versioning** - Track changes and revert to previous versions
-- [ ] **Improved error handling** - Better user feedback and recovery
-- [ ] **Performance optimization** - Faster load times for large prompt libraries
+✅ **What's Working**
+- Sign up and log in (Supabase handles this)
+- Create, edit, and delete prompts
+- Organize with tags and collections
+- Search and filter your prompts
+- Works on mobile and desktop
+- Dark mode (because light mode hurts at night)
+- Global search (Ctrl/Cmd+K)
+- Copy prompts with one click
 
-### Medium Priority
-- [ ] **Rich text editor** - Markdown support for formatted prompts
-- [ ] **Prompt templates** - Reusable prompt structures with variables
-- [ ] **Keyboard shortcuts** - Full keyboard navigation
-- [ ] **Bulk operations** - Delete/tag/export multiple prompts at once
-
----
-
-## 🌟 Phase 2: Smart Features (4-6 months)
-
-### AI-Powered Enhancements
-- [ ] **Auto-tagging** - AI suggests tags based on prompt content
-- [ ] **Similar prompts** - Find related prompts in your library
-- [ ] **Prompt suggestions** - AI recommends improvements to your prompts
-- [ ] **Smart search** - Semantic search beyond keyword matching
-
-### Organization & Discovery
-- [ ] **Folders/nested collections** - Multi-level organization
-- [ ] **Favorites/starred prompts** - Quick access to most-used prompts
-- [ ] **Recent prompts** - History of recently viewed/edited prompts
-- [ ] **Prompt stats** - Track usage, creation date, last modified
+It's basic, but it works. And that's the whole point.
 
 ---
 
-## 🤝 Phase 3: Collaboration (6-9 months)
+## 🚀 Phase 1: Make It Solid (Next Few Months)
 
-### Team Features
-- [ ] **Shared workspaces** - Team prompt libraries
-- [ ] **Prompt sharing** - Share individual prompts via link
-- [ ] **Public prompt gallery** - Discover prompts from the community
-- [ ] **Comments & discussions** - Collaborate on prompts
-- [ ] **Role-based permissions** - Admin, editor, viewer roles
+### Must-Have Stuff
+- [ ] **Work offline** - Save prompts even without internet, sync later
+- [ ] **Export your prompts** - Download as JSON or CSV (never lose your work)
+- [ ] **Version history** - See old versions of prompts, undo changes
+- [ ] **Better error messages** - Actually tell you what went wrong
+- [ ] **Speed improvements** - Load faster when you have tons of prompts
 
-### Integration
+### Nice-to-Have
+- [ ] **Markdown support** - Format your prompts with bold, lists, etc.
+- [ ] **Prompt templates** - Save structures with blanks to fill in
+- [ ] **More keyboard shortcuts** - Do everything without touching the mouse
+- [ ] **Bulk actions** - Delete or tag multiple prompts at once
+
+---
+
+## 🌟 Phase 2: Get Smart (Later This Year)
+
+### AI-Powered Features
+- [ ] **Auto-tag prompts** - AI suggests tags based on what you wrote
+- [ ] **Find similar prompts** - "You might also like these..."
+- [ ] **Improve my prompts** - AI suggests better wording
+- [ ] **Smarter search** - Understand what you mean, not just keywords
+
+### Better Organization
+- [ ] **Folders** - Nest collections inside collections
+- [ ] **Favorites** - Star your best prompts
+- [ ] **Recently used** - Quick access to prompts you use a lot
+- [ ] **Stats** - How often you use each prompt, when you created it
+
+---
+
+## 🤝 Phase 3: Share & Collaborate (Maybe Next Year?)
+
+### Work With Others
+- [ ] **Team workspaces** - Share prompt libraries with classmates/colleagues
+- [ ] **Share links** - Send a prompt to someone via URL
+- [ ] **Public gallery** - Browse prompts from other users
+- [ ] **Comments** - Discuss and improve prompts together
+- [ ] **Permissions** - Control who can edit vs just view
+
+### Connect Everything
 - [ ] **Browser extension** - Save prompts from any website
-- [ ] **Mobile apps** - Native iOS and Android apps
-- [ ] **API access** - Programmatic access to your prompt library
-- [ ] **Third-party integrations** - Zapier, Notion, Obsidian, etc.
+- [ ] **Mobile apps** - Native iPhone and Android apps
+- [ ] **API** - Build your own tools on top of closedNote
+- [ ] **Integrations** - Connect to Notion, Obsidian, Zapier, etc.
 
 ---
 
-## 🎨 Phase 4: Customization & Power Users (9-12 months)
+## 🎨 Phase 4: Power User Mode (Way Later)
 
-### Advanced Features
-- [ ] **Custom fields** - Add metadata to prompts (model, cost, success rate)
-- [ ] **Prompt chaining** - Link multiple prompts together
-- [ ] **Variables & placeholders** - Dynamic prompt generation
-- [ ] **Prompt analytics** - Track effectiveness and usage patterns
-- [ ] **Custom themes** - Personalize the UI
-- [ ] **Plugins/extensions** - Community-built add-ons
+### For the Pros
+- [ ] **Custom fields** - Track model, cost, success rate, whatever
+- [ ] **Chain prompts** - Link multiple prompts together
+- [ ] **Variables** - Dynamic prompts that change based on input
+- [ ] **Analytics** - Track which prompts work best
+- [ ] **Custom themes** - Make it look however you want
+- [ ] **Plugins** - Let the community build add-ons
 
-### Developer Tools
-- [ ] **CLI tool** - Manage prompts from the command line
-- [ ] **Desktop app** - Electron-based native app
-- [ ] **Self-hosting guide** - Deploy your own instance
-- [ ] **Advanced export options** - Anki cards, Roam Research, etc.
-
----
-
-## 🌍 Long-term Vision (12+ months)
-
-- **Multi-language support** - Localization for global users
-- **Prompt marketplace** - Buy/sell premium prompt templates
-- **AI model comparison** - Test prompts across different models
-- **Prompt optimization** - Automated testing and refinement
-- **Enterprise features** - SSO, audit logs, advanced security
-- **Educational resources** - Courses, tutorials, prompt engineering guides
+### Developer Stuff
+- [ ] **CLI tool** - Manage prompts from the terminal
+- [ ] **Desktop app** - Native Mac/Windows app
+- [ ] **Self-host guide** - Run your own closedNote server
+- [ ] **Export to anything** - Anki cards, Roam, whatever you need
 
 ---
 
-## 💡 Community Ideas
+## 🌍 Dream Features (Someday)
 
-This section tracks ideas suggested by the community. Vote on features by adding 👍 to the related GitHub issue.
-
-- **Notion-style database views** - Table, board, calendar views for prompts
-- **Prompt grading system** - Rate prompts by effectiveness
-- **Daily prompt challenges** - Community-driven prompt exercises
-- **Integration with ChatGPT/Claude** - Direct API integration
-- **Voice input** - Record prompts via voice
+- Support for multiple languages
+- Marketplace for premium prompt templates
+- Test prompts across different AI models
+- AI that helps you write better prompts
+- Enterprise features (if companies want to use this)
+- Courses and guides for prompt engineering
 
 ---
 
-## 🤔 Ideas Being Considered
+## 💡 Ideas from the Community
 
-Features we're thinking about but need more feedback:
+Got an idea? Drop it in an issue and we'll track it here. Most upvoted ideas get priority.
 
-- Prompt A/B testing
-- Collaborative editing (Google Docs style)
-- Prompt contests/showcases
-- Premium tier for power users
+Some ideas people have mentioned:
+- Notion-style views (table, board, calendar)
+- Rate prompts by how well they work
+- Daily prompt challenges
+- Direct ChatGPT/Claude integration
+- Voice input for prompts
+
+---
+
+## 🤔 Still Thinking About...
+
+Not sure about these yet, need more feedback:
+
+- A/B testing for prompts
+- Real-time collaborative editing
+- Prompt contests or showcases
+- Premium tier (probably not, want to keep it free)
 - White-label version for businesses
 
 ---
 
-## 🙏🏽 How to Influence the Roadmap
+## 🙏🏽 How You Can Shape This
 
-1. **Open an issue** with your feature request
-2. **Vote** on existing issues using reactions
-3. **Join discussions** in GitHub Discussions
-4. **Contribute code** - implement features yourself!
-5. **Share feedback** - what's working, what's not
+Your input matters! Here's how to influence where closedNote goes:
 
----
-
-## 📝 Notes
-
-- This roadmap is **flexible** and will adapt based on user needs
-- Timelines are **estimates** and may shift
-- **Community contributions** can accelerate any feature
-- Some features may be **dropped** if they don't fit the vision
-- Security and privacy will **always** be top priorities
+1. **Open an issue** - Suggest features, vote on existing ones
+2. **Build it yourself** - PRs are welcome!
+3. **Talk to me** - DM on [LinkedIn](https://www.linkedin.com/in/samuelaboderin) or [X](https://x.com/aboderinsamuel)
+4. **Share feedback** - What's working? What sucks?
 
 ---
 
+## 📝 Real Talk
+
+This roadmap is a **rough plan**, not a promise. Timelines might slip, features might change, some things might never happen. I'm building this between classes at UNILAG, so it moves as fast as I can make it move.
+
+But the goal stays the same: **make prompt saving easier for everyone**.
+
+If that resonates with you, stick around. 🚀
+
+---
+
+**Current Status**: v0.1 (early days!)  
 **Last Updated**: November 2025  
-**Current Version**: v0.1  
-**Next Milestone**: Phase 1 completion
+**Next Big Thing**: Getting Phase 1 features shipped
 
 ---
 
-Questions about the roadmap? Open an issue or reach out on [LinkedIn](https://www.linkedin.com/in/samuelaboderin). 🚀
+Questions? Ideas? Hit me up: [@aboderinsamuel](https://github.com/aboderinsamuel) 🇳🇬

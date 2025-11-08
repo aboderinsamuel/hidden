@@ -2,112 +2,57 @@
   {
     "name": "bug",
     "color": "d73a4a",
-    "description": "Something isn't working"
+    "description": "Something's broken"
   },
   {
     "name": "enhancement",
     "color": "a2eeef",
-    "description": "New feature or request"
+    "description": "New feature or improvement"
   },
   {
     "name": "documentation",
     "color": "0075ca",
-    "description": "Improvements or additions to documentation"
+    "description": "README, guides, or docs need updating"
   },
   {
     "name": "good first issue",
     "color": "7057ff",
-    "description": "Good for newcomers"
+    "description": "Easy win for first-time contributors"
   },
   {
     "name": "help wanted",
     "color": "008672",
-    "description": "Extra attention is needed"
+    "description": "Could really use some help here"
   },
   {
     "name": "question",
     "color": "d876e3",
-    "description": "Further information is requested"
+    "description": "Just asking or clarifying something"
   },
   {
     "name": "wontfix",
     "color": "ffffff",
-    "description": "This will not be worked on"
+    "description": "Not doing this (and here's why)"
   },
   {
     "name": "duplicate",
     "color": "cfd3d7",
-    "description": "This issue or pull request already exists"
-  },
-  {
-    "name": "invalid",
-    "color": "e4e669",
-    "description": "This doesn't seem right"
+    "description": "Already reported elsewhere"
   },
   {
     "name": "priority: high",
     "color": "b60205",
-    "description": "High priority issue"
-  },
-  {
-    "name": "priority: medium",
-    "color": "fbca04",
-    "description": "Medium priority issue"
+    "description": "Needs attention ASAP"
   },
   {
     "name": "priority: low",
     "color": "0e8a16",
-    "description": "Low priority issue"
+    "description": "Nice to have, not urgent"
   },
   {
-    "name": "type: UI/UX",
+    "name": "UI/UX",
     "color": "e99695",
-    "description": "User interface and experience improvements"
-  },
-  {
-    "name": "type: performance",
-    "color": "f9d0c4",
-    "description": "Performance optimization"
-  },
-  {
-    "name": "type: security",
-    "color": "ee0701",
-    "description": "Security-related issue"
-  },
-  {
-    "name": "type: refactor",
-    "color": "c5def5",
-    "description": "Code refactoring"
-  },
-  {
-    "name": "type: test",
-    "color": "fef2c0",
-    "description": "Testing improvements or additions"
-  },
-  {
-    "name": "status: in progress",
-    "color": "0052cc",
-    "description": "Work in progress"
-  },
-  {
-    "name": "status: needs review",
-    "color": "fbca04",
-    "description": "Needs code review"
-  },
-  {
-    "name": "status: blocked",
-    "color": "b60205",
-    "description": "Blocked by dependencies or other issues"
-  },
-  {
-    "name": "breaking change",
-    "color": "d93f0b",
-    "description": "Changes that break backward compatibility"
-  },
-  {
-    "name": "dependencies",
-    "color": "0366d6",
-    "description": "Pull requests that update a dependency file"
+    "description": "How it looks or feels"
   },
   {
     "name": "mobile",
@@ -115,8 +60,13 @@
     "description": "Mobile-specific issue"
   },
   {
-    "name": "desktop",
-    "color": "bfd4f2",
-    "description": "Desktop-specific issue"
+    "name": "needs feedback",
+    "color": "fbca04",
+    "description": "Want to hear what people think"
+  },
+  {
+    "name": "in progress",
+    "color": "0052cc",
+    "description": "Working on it right now"
   }
 ]

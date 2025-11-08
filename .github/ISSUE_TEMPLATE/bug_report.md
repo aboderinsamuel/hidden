@@ -1,37 +1,39 @@
 ---
 name: Bug report
-about: Create a report to help us improve closedNote
+about: Something's broken? Let me know so I can fix it
 title: '[BUG] '
 labels: bug
 assignees: ''
 ---
 
-## 🐛 Bug Description
-A clear and concise description of what the bug is.
+## 🐛 What's Wrong?
+Tell me what's not working. Be as detailed as you can!
 
-## 🔄 Steps to Reproduce
-1. Go to '...'
-2. Click on '...'
-3. Scroll down to '...'
-4. See error
+## 🔄 How to Make It Happen Again
+Help me recreate the bug:
+1. I went to '...'
+2. Then I clicked '...'
+3. And then '...'
+4. That's when I saw the error
 
-## ✅ Expected Behavior
-A clear and concise description of what you expected to happen.
+## ✅ What You Expected
+What did you think would happen?
 
-## ❌ Actual Behavior
-What actually happened instead.
+## ❌ What Actually Happened
+What happened instead?
 
-## 📸 Screenshots
-If applicable, add screenshots to help explain your problem.
+## 📸 Screenshots or Videos
+If you can grab a screenshot or screen recording, that helps a LOT. Phone camera pic works too!
 
-## 💻 Environment
-- **OS**: [e.g. Windows 11, macOS Sonoma, Ubuntu 22.04]
-- **Browser**: [e.g. Chrome 120, Firefox 121, Safari 17]
-- **Device**: [e.g. Desktop, iPhone 14, Samsung Galaxy S23]
-- **closedNote Version**: [e.g. v0.1, or latest from main branch]
+## 💻 Your Setup
+Help me understand your environment:
+- **Device**: [e.g. My laptop, iPhone 14, Samsung Galaxy]
+- **Browser**: [e.g. Chrome, Safari, Firefox]
+- **OS**: [e.g. Windows 11, macOS, Android]
+- **Version**: [e.g. v0.1, or just say "latest"]
 
-## 📝 Additional Context
-Add any other context about the problem here (e.g., console errors, network issues, etc.)
+## 📝 Anything Else?
+Any console errors? Does it only happen sometimes? Any other weird behavior?
 
-## 🔗 Related Issues
-Link to any related issues if applicable.
+## 🔗 Related?
+Is this similar to another issue you've seen? Link it here if you know.
