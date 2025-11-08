@@ -26,14 +26,14 @@ const useCases = [
 export function UseCasesShowcase() {
   return (
     <div>
-      <div className="flex items-start justify-between mb-12 max-w-xl mx-auto w-full">
-        <p className="text-lg text-neutral-600 dark:text-neutral-400 mr-6">
+      <div className="flex flex-col md:flex-row items-start justify-between gap-6 mb-12 max-w-xl mx-auto w-full">
+        <p className="text-lg text-neutral-600 dark:text-neutral-400 md:mr-6">
           Your personal vault for AI prompts. Save, organize, and never lose
           your best prompts again.
         </p>
         <Link
           href="/prompts/new"
-          className="inline-flex shrink-0 items-center px-5 py-2.5 bg-neutral-900 hover:bg-neutral-800 dark:bg-neutral-100 dark:hover:bg-neutral-200 dark:text-neutral-900 text-white font-medium rounded-full transition-colors text-sm"
+          className="inline-flex shrink-0 items-center px-5 py-2.5 bg-neutral-900 hover:bg-neutral-800 dark:bg-neutral-100 dark:hover:bg-neutral-200 dark:text-neutral-900 text-white font-medium rounded-full transition-colors text-sm w-full md:w-auto justify-center"
         >
           + First prompt
         </Link>

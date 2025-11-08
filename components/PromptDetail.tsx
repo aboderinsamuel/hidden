@@ -136,25 +136,25 @@ export function PromptDetail({ prompt }: PromptDetailProps) {
             </pre>
           )}
         </div>
-        <div className="flex gap-3 pt-2">
+        <div className="flex flex-wrap gap-3 pt-2">
           {editing ? (
             <>
               <input
                 value={tags}
                 onChange={(e) => setTags(e.target.value)}
                 placeholder="tag1, tag2"
-                className="flex-1 px-3 py-2 bg-neutral-100 dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-md text-sm"
+                className="flex-1 min-w-[200px] px-3 py-2 bg-neutral-100 dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-md text-sm"
               />
               <button
                 onClick={handleSave}
                 disabled={saving}
-                className="px-4 py-2 bg-green-600 hover:bg-green-500 text-white text-sm font-medium rounded-md disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full sm:w-auto px-4 py-2 bg-green-600 hover:bg-green-500 text-white text-sm font-medium rounded-md disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {saving ? "Saving..." : "Save"}
               </button>
               <button
                 onClick={() => setEditing(false)}
-                className="px-4 py-2 bg-neutral-300 dark:bg-neutral-700 hover:bg-neutral-400 dark:hover:bg-neutral-600 text-neutral-800 dark:text-neutral-100 text-sm font-medium rounded-md"
+                className="w-full sm:w-auto px-4 py-2 bg-neutral-300 dark:bg-neutral-700 hover:bg-neutral-400 dark:hover:bg-neutral-600 text-neutral-800 dark:text-neutral-100 text-sm font-medium rounded-md"
               >
                 Cancel
               </button>
@@ -163,13 +163,13 @@ export function PromptDetail({ prompt }: PromptDetailProps) {
             <>
               <button
                 onClick={() => setEditing(true)}
-                className="px-4 py-2 bg-neutral-200 dark:bg-neutral-800 hover:bg-neutral-300 dark:hover:bg-neutral-700 text-neutral-800 dark:text-neutral-100 text-sm font-medium rounded-md"
+                className="w-full sm:w-auto px-4 py-2 bg-neutral-200 dark:bg-neutral-800 hover:bg-neutral-300 dark:hover:bg-neutral-700 text-neutral-800 dark:text-neutral-100 text-sm font-medium rounded-md"
               >
                 Edit
               </button>
               <button
                 onClick={handleDelete}
-                className="px-4 py-2 bg-red-600 hover:bg-red-500 text-white text-sm font-medium rounded-md"
+                className="w-full sm:w-auto px-4 py-2 bg-red-600 hover:bg-red-500 text-white text-sm font-medium rounded-md"
               >
                 Delete
               </button>

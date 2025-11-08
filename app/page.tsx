@@ -71,7 +71,7 @@ function HomeContent() {
       ) : allPrompts.length === 0 ? (
         <div className="max-w-2xl mx-auto">
           <div className="text-center mb-8">
-            <h1 className="font-serif-title text-5xl font-normal text-neutral-900 dark:text-neutral-100 mb-4">
+            <h1 className="font-serif-title text-4xl sm:text-5xl font-normal text-neutral-900 dark:text-neutral-100 mb-4">
               closedNote
             </h1>
           </div>

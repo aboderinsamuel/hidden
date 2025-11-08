@@ -7,12 +7,12 @@ import { useAuth } from "./AuthProvider";
 import { useRouter, usePathname } from "next/navigation";
 
 interface HeaderProps {
+  // onSearch retained for backward compatibility but no longer used; global palette handles search.
   onSearch?: (query: string) => void;
   promptCount: number;
 }
 
-export function Header({ onSearch, promptCount }: HeaderProps) {
-  const [searchQuery, setSearchQuery] = useState("");
+export function Header({ promptCount }: HeaderProps) {
   const [isAccountMenuOpen, setIsAccountMenuOpen] = useState(false);
   const accountMenuRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
@@ -37,57 +37,85 @@ export function Header({ onSearch, promptCount }: HeaderProps) {
     }
   }, [isAccountMenuOpen]);
 
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (onSearch) {
-      onSearch(searchQuery);
-    }
-  };
+  // The large search bar now opens the global palette; triggers are handled via click/focus.
 
   return (
     <header className="border-b border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900">
-      <div className="flex items-center justify-between px-6 py-4">
-        <Link href="/home" className="flex items-center gap-3 group">
-          <span className="font-serif-title text-2xl font-bold text-neutral-900 dark:text-neutral-100 group-hover:opacity-80 transition-opacity">
-            closedNote
-          </span>
-          <span
-            aria-label="closedNote version"
-            className="px-2 py-1 bg-neutral-200 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400 text-xs font-medium rounded-full group-hover:bg-neutral-300 dark:group-hover:bg-neutral-700 transition-colors"
+      <div className="flex items-center justify-between px-4 sm:px-6 py-4 gap-3">
+        <div className="flex items-center gap-2">
+          {/* Mobile menu button */}
+          <button
+            aria-label="Open menu"
+            className="md:hidden p-2 rounded-md hover:bg-neutral-100 dark:hover:bg-neutral-800"
+            onClick={() => window.dispatchEvent(new Event("toggle-sidebar"))}
           >
-            v0.1
-          </span>
-        </Link>
-
-        <form onSubmit={handleSearch} className="flex-1 max-w-md mx-8">
-          <div className="relative">
-            <input
-              type="text"
-              placeholder="Search"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full px-4 py-2 pl-10 bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 text-neutral-900 dark:text-neutral-100 placeholder-neutral-500 rounded-full focus:outline-none focus:ring-2 focus:ring-neutral-400 dark:focus:ring-neutral-600 transition-all"
-            />
             <svg
-              className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-500"
+              xmlns="http://www.w3.org/2000/svg"
               fill="none"
-              stroke="currentColor"
               viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="w-6 h-6"
             >
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                strokeWidth={2}
-                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
               />
             </svg>
-            <span className="absolute right-3 top-1/2 -translate-y-1/2 px-2 py-0.5 bg-neutral-200 dark:bg-neutral-700 text-neutral-500 dark:text-neutral-400 text-xs rounded-full">
-              Ctrl+K
-            </span>
-          </div>
-        </form>
+          </button>
 
-        <div className="flex items-center gap-3">
+          <Link href="/home" className="flex items-center gap-3 group">
+            <span className="font-serif-title text-2xl font-bold text-neutral-900 dark:text-neutral-100 group-hover:opacity-80 transition-opacity">
+              closedNote
+            </span>
+            <span
+              aria-label="closedNote version"
+              className="px-2 py-1 bg-neutral-200 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400 text-xs font-medium rounded-full group-hover:bg-neutral-300 dark:group-hover:bg-neutral-700 transition-colors"
+            >
+              v0.1
+            </span>
+          </Link>
+          <Link
+            href="/docs"
+            className="hidden sm:inline-flex items-center px-3 py-1.5 rounded-full text-sm bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-800 dark:hover:bg-neutral-700 text-neutral-800 dark:text-neutral-100 transition-colors"
+          >
+            Docs
+          </Link>
+        </div>
+
+        <div className="hidden sm:block flex-1 max-w-md mx-2 sm:mx-6 md:mx-8">
+          <button
+            type="button"
+            aria-label="Search"
+            onClick={() => window.dispatchEvent(new Event("open-search"))}
+            className="group w-full relative text-left"
+          >
+            <div className="relative">
+              <div className="w-full px-4 py-2 pl-10 bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 text-neutral-500 dark:text-neutral-300 rounded-full group-hover:bg-neutral-200 dark:group-hover:bg-neutral-700 transition-colors">
+                Search (pages, tags, prompts)
+              </div>
+              <svg
+                className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-500"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                />
+              </svg>
+              <span className="hidden md:inline absolute right-3 top-1/2 -translate-y-1/2 px-2 py-0.5 bg-neutral-200 dark:bg-neutral-700 text-neutral-500 dark:text-neutral-400 text-xs rounded-full">
+                Ctrl+K
+              </span>
+            </div>
+          </button>
+        </div>
+
+        <div className="flex items-center gap-2 sm:gap-3">
           <ThemeToggle />
           {user ? (
             <>
@@ -108,7 +136,7 @@ export function Header({ onSearch, promptCount }: HeaderProps) {
                   <div className="w-8 h-8 rounded-full bg-gradient-to-br from-neutral-400 to-neutral-600 dark:from-neutral-600 dark:to-neutral-800 flex items-center justify-center text-white text-sm font-semibold">
                     {user.displayName.charAt(0).toUpperCase()}
                   </div>
-                  <span className="text-sm font-medium text-neutral-900 dark:text-neutral-100 max-w-[120px] truncate">
+                  <span className="hidden sm:inline text-sm font-medium text-neutral-900 dark:text-neutral-100 max-w-[120px] truncate">
                     {user.displayName}
                   </span>
                   {/* Dropdown Arrow */}
