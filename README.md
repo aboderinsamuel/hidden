@@ -132,6 +132,14 @@ The goal is to make prompt saving easier for *everyone*, not just developers.
 
 If you've got ideas, dark mode, AI tag suggestions, team sharing, prompt history, whatever, you're welcome to hop in!
 
+#### 📚 Contributing Resources
+
+- **[Code of Conduct](./CODE_OF_CONDUCT.md)** - Our community standards
+- **[Roadmap](./ROADMAP.md)** - Future features and project vision
+- **[Release Strategy](./RELEASES.md)** - How we ship updates
+- **[Issue Templates](./.github/ISSUE_TEMPLATE/)** - Report bugs or request features
+- **[Pull Request Template](./.github/PULL_REQUEST_TEMPLATE.md)** - Submit your changes
+
 ```bash
 # Steps to contribute
 1. Fork this repo 🍴

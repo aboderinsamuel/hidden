@@ -1,8 +1,8 @@
-import Link from "next/link"
-import { Prompt } from "@/lib/types"
+import Link from "next/link";
+import { Prompt } from "@/lib/types";
 
 interface PromptListItemProps {
-  prompt: Prompt
+  prompt: Prompt;
 }
 
 export function PromptListItem({ prompt }: PromptListItemProps) {
@@ -18,5 +18,5 @@ export function PromptListItem({ prompt }: PromptListItemProps) {
         </span>
       )}
     </Link>
-  )
+  );
 }
