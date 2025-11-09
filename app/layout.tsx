@@ -3,6 +3,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { AuthProvider } from "@/components/AuthProvider";
 import { SearchPalette } from "@/components/SearchPalette";
+import { Analytics } from "@vercel/analytics/react";
 
 export const metadata: Metadata = {
   title: "closedNote",
@@ -30,6 +31,8 @@ export default function RootLayout({
             <SearchPalette />
           </AuthProvider>
         </ThemeProvider>
+        {/* Vercel Web Analytics */}
+        <Analytics />
       </body>
     </html>
   );
