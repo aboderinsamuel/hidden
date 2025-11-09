@@ -15,12 +15,26 @@ export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const res = await login(email, password);
-    if (!res.ok) setError(res.error);
-    else router.push("/");
+    setError(null);
+    setLoading(true);
+
+    try {
+      const res = await login(email, password);
+      if (!res.ok) {
+        setError(res.error);
+      } else {
+        router.push("/");
+      }
+    } catch (err) {
+      setError("An unexpected error occurred. Please try again.");
+      console.error("Login error:", err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -53,9 +67,10 @@ export default function LoginPage() {
           </div>
           <button
             type="submit"
-            className="w-full px-4 py-2 rounded-full bg-neutral-900 text-white dark:bg-neutral-100 dark:text-neutral-900"
+            disabled={loading}
+            className="w-full px-4 py-2 rounded-full bg-neutral-900 text-white dark:bg-neutral-100 dark:text-neutral-900 disabled:opacity-50 disabled:cursor-not-allowed transition-opacity"
           >
-            Login
+            {loading ? "Logging in..." : "Login"}
           </button>
         </form>
         <p className="text-sm text-neutral-500 dark:text-neutral-400 mt-3">

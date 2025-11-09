@@ -1,9 +1,7 @@
 import { Prompt, PromptModel } from "./types";
 import { supabase } from "./supabase";
 
-/**
- * Fetch all prompts for the current user
- */
+// Fetch all prompts for the current user
 export async function getAllPrompts(): Promise<Prompt[]> {
   try {
     const { data: prompts, error: promptsError } = await supabase
@@ -57,9 +55,7 @@ export async function getAllPrompts(): Promise<Prompt[]> {
   }
 }
 
-/**
- * Fetch a single prompt by ID
- */
+// Fetch a single prompt by ID
 export async function getPromptById(id: string): Promise<Prompt | undefined> {
   try {
     const { data: prompt, error: promptError } = await supabase
@@ -99,9 +95,7 @@ export async function getPromptById(id: string): Promise<Prompt | undefined> {
   }
 }
 
-/**
- * Save a prompt (create or update)
- */
+// Save a prompt (create or update)
 export async function savePrompt(prompt: Prompt): Promise<void> {
   try {
     const {
@@ -183,9 +177,7 @@ export async function savePrompt(prompt: Prompt): Promise<void> {
   }
 }
 
-/**
- * Delete a prompt by ID
- */
+// Delete a prompt by ID
 export async function deletePrompt(id: string): Promise<void> {
   try {
     // Tags will be automatically deleted by cascade
@@ -200,9 +192,7 @@ export async function deletePrompt(id: string): Promise<void> {
   }
 }
 
-/**
- * Filter prompts based on search criteria
- */
+// Filter prompts based on search criteria
 export function filterPrompts(
   prompts: Prompt[],
   filters: {
@@ -233,9 +223,7 @@ export function filterPrompts(
   });
 }
 
-/**
- * Group prompts by collection
- */
+// Group prompts by collection
 export function groupPromptsByCollection(
   prompts: Prompt[]
 ): Record<string, Prompt[]> {
@@ -252,9 +240,7 @@ export function groupPromptsByCollection(
   );
 }
 
-/**
- * Group prompts by tag
- */
+// Group prompts by tag
 export function groupPromptsByTag(
   prompts: Prompt[]
 ): Record<string, Prompt[]> {

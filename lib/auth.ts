@@ -1,15 +1,25 @@
 import { User } from "./types";
 import { supabase } from "./supabase";
 
-/**
- * Register a new user with Supabase Auth
- */
+// Register a new user with Supabase Auth
+
 export async function registerUser(
   email: string,
   password: string,
   displayName?: string
 ): Promise<{ ok: true } | { ok: false; error: string }> {
   try {
+    // Validate inputs
+    if (!email || !password) {
+      return { ok: false, error: "Email and password are required" };
+    }
+
+    if (password.length < 6) {
+      return { ok: false, error: "Password must be at least 6 characters" };
+    }
+
+    console.log("[auth] Attempting signup for:", email);
+
     const { data, error } = await supabase.auth.signUp({
       email: email.trim(),
       password,
@@ -21,34 +31,56 @@ export async function registerUser(
     });
 
     if (error) {
-      return { ok: false, error: error.message };
+      console.error("[auth] Signup error:", error);
+      return { ok: false, error: error.message || "Failed to sign up" };
     }
 
     if (!data.user) {
       return { ok: false, error: "Failed to create user" };
     }
 
+    console.log("[auth] Signup successful:", data.user.id);
     return { ok: true };
   } catch (err) {
     console.error("[auth] Registration error:", err);
-    return { ok: false, error: "An unexpected error occurred" };
+    const errorMessage = err instanceof Error ? err.message : "Network error - please check your connection";
+    return { ok: false, error: errorMessage };
   }
 }
 
-/**
- * Authenticate user with email and password
- */
+ //Authenticate user with email and password
+
 export async function authenticateUser(
   email: string,
   password: string
 ): Promise<{ ok: true } | { ok: false; error: string }> {
   try {
+    // Validate inputs
+    if (!email || !password) {
+      return { ok: false, error: "Email and password are required" };
+    }
+
+    console.log("[auth] Attempting login for:", email);
+
     const { data, error } = await supabase.auth.signInWithPassword({
       email: email.trim(),
       password,
     });
 
     if (error) {
+      console.error("[auth] Login error:", error);
+      
+      // Provide more helpful error messages
+      if (error.message.includes("Invalid login credentials")) {
+        return { ok: false, error: "Invalid email or password" };
+      }
+      if (error.message.includes("Email not confirmed")) {
+        return { ok: false, error: "Please verify your email first" };
+      }
+      if (error.message.includes("fetch")) {
+        return { ok: false, error: "Network error - please check your internet connection" };
+      }
+      
       return { ok: false, error: error.message };
     }
 
@@ -56,16 +88,18 @@ export async function authenticateUser(
       return { ok: false, error: "Invalid credentials" };
     }
 
+    console.log("[auth] Login successful:", data.user.id);
     return { ok: true };
   } catch (err) {
     console.error("[auth] Login error:", err);
-    return { ok: false, error: "An unexpected error occurred" };
+    const errorMessage = err instanceof Error ? err.message : "Network error - please check your connection";
+    return { ok: false, error: errorMessage };
   }
 }
 
-/**
- * Get the current authenticated user
- */
+
+ // Get the current authenticated user
+
 export async function getCurrentUser(): Promise<User | null> {
   try {
     const {
@@ -100,9 +134,9 @@ export async function getCurrentUser(): Promise<User | null> {
   }
 }
 
-/**
- * Get the current session
- */
+
+ //Get the current session
+ 
 export async function getSession() {
   try {
     const {
@@ -115,9 +149,9 @@ export async function getSession() {
   }
 }
 
-/**
- * Logout the current user
- */
+
+ // Logout the current user
+ 
 export async function logoutUser(): Promise<void> {
   try {
     await supabase.auth.signOut();
@@ -126,9 +160,9 @@ export async function logoutUser(): Promise<void> {
   }
 }
 
-/**
- * Delete the current user's account and all associated data
- */
+
+ // Delete the current user's account and all associated data
+ 
 export async function deleteAccount(): Promise<
   { ok: true } | { ok: false; error: string }
 > {
@@ -158,9 +192,9 @@ export async function deleteAccount(): Promise<
   }
 }
 
-/**
- * Listen to auth state changes
- */
+
+ // Listen to auth state changes
+ 
 export function onAuthStateChange(
   callback: (user: User | null) => void
 ): () => void {

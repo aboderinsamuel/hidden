@@ -9,6 +9,7 @@ import {
   authenticateUser,
   onAuthStateChange,
 } from "@/lib/auth";
+import { logSupabaseHealth } from "@/lib/supabase-health-check";
 
 interface AuthContextValue {
   user: User | null;
@@ -34,6 +35,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // Run health check in development
+    if (process.env.NODE_ENV === "development") {
+      logSupabaseHealth().catch(console.error);
+    }
+
     // Initialize user from session
     getCurrentUser().then((currentUser) => {
       console.log("[AuthProvider] Initial user:", currentUser);

@@ -16,12 +16,26 @@ export default function SignupPage() {
   const [password, setPassword] = useState("");
   const [displayName, setDisplayName] = useState("");
   const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const res = await signup(email, password, displayName);
-    if (!res.ok) setError(res.error);
-    else router.push("/");
+    setError(null);
+    setLoading(true);
+
+    try {
+      const res = await signup(email, password, displayName);
+      if (!res.ok) {
+        setError(res.error);
+      } else {
+        router.push("/");
+      }
+    } catch (err) {
+      setError("An unexpected error occurred. Please try again.");
+      console.error("Signup error:", err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -62,9 +76,10 @@ export default function SignupPage() {
           </div>
           <button
             type="submit"
-            className="w-full px-4 py-2 rounded-full bg-neutral-900 text-white dark:bg-neutral-100 dark:text-neutral-900"
+            disabled={loading}
+            className="w-full px-4 py-2 rounded-full bg-neutral-900 text-white dark:bg-neutral-100 dark:text-neutral-900 disabled:opacity-50 disabled:cursor-not-allowed transition-opacity"
           >
-            Create account
+            {loading ? "Creating account..." : "Create account"}
           </button>
         </form>
         <p className="text-sm text-neutral-500 dark:text-neutral-400 mt-3">

@@ -4,10 +4,10 @@ import { useState, useEffect } from "react";
 import { Prompt } from "@/lib/types";
 import { getAllPrompts } from "@/lib/promptData";
 
-/**
- * Custom hook to manage prompts from Supabase
- * Handles loading state and automatic refresh
- */
+
+ // Custom hook to manage prompts from Supabase
+// Handles loading state and automatic refresh
+
 export function usePrompts() {
   const [prompts, setPrompts] = useState<Prompt[]>([]);
   const [loading, setLoading] = useState(true);

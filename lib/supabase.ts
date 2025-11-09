@@ -10,7 +10,12 @@ if (!supabaseUrl || !supabaseAnonKey) {
   console.warn("📖 See SUPABASE_SETUP.md for setup instructions");
 }
 
-// Create client with fallback values to prevent errors during development
+// Validate URL format
+if (supabaseUrl && !supabaseUrl.startsWith('http')) {
+  console.error("❌ Invalid NEXT_PUBLIC_SUPABASE_URL format. Must start with http:// or https://");
+}
+
+// Create client with better error handling and timeout settings
 export const supabase = createClient(
   supabaseUrl || "https://placeholder.supabase.co",
   supabaseAnonKey || "placeholder-key",
@@ -19,6 +24,15 @@ export const supabase = createClient(
       persistSession: true,
       autoRefreshToken: true,
       detectSessionInUrl: true,
+      storage: typeof window !== 'undefined' ? window.localStorage : undefined,
+    },
+    global: {
+      headers: {
+        'x-client-info': 'closednote@0.1.0',
+      },
+    },
+    db: {
+      schema: 'public',
     },
   }
 );
