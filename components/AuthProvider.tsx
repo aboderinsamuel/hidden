@@ -22,7 +22,10 @@ interface AuthContextValue {
     email: string,
     password: string,
     displayName?: string
-  ) => Promise<{ ok: true } | { ok: false; error: string }>;
+  ) => Promise<
+    | { ok: true; needsEmailConfirmation?: boolean }
+    | { ok: false; error: string }
+  >;
   logout: () => Promise<void>;
 }
 
@@ -76,7 +79,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     displayName?: string
   ) => {
     const res = await registerUser(email, password, displayName);
-    if (res.ok) {
+    if (res.ok && !res.needsEmailConfirmation) {
       const currentUser = await getCurrentUser();
       setUser(currentUser);
     }

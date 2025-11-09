@@ -7,7 +7,7 @@ export async function registerUser(
   email: string,
   password: string,
   displayName?: string
-): Promise<{ ok: true } | { ok: false; error: string }> {
+): Promise<{ ok: true; needsEmailConfirmation?: boolean } | { ok: false; error: string }> {
   try {
     // Validate inputs
     if (!email || !password) {
@@ -40,7 +40,15 @@ export async function registerUser(
     }
 
     console.log("[auth] Signup successful:", data.user.id);
-    return { ok: true };
+    console.log("[auth] Session exists:", !!data.session);
+    
+    // Always require email confirmation for new signups
+    // Users must verify their email before they can access the app
+    const needsEmailConfirmation = true;
+    
+    console.log("[auth] Email confirmation required");
+    
+    return { ok: true, needsEmailConfirmation };
   } catch (err) {
     console.error("[auth] Registration error:", err);
     const errorMessage = err instanceof Error ? err.message : "Network error - please check your connection";
