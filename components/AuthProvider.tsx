@@ -85,19 +85,19 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 
   const logout = async () => {
     console.log("[AuthProvider] Logout requested");
-    
+
     try {
       // Clear user state immediately
       setUser(null);
-      
+
       // Sign out from Supabase
       await logoutUser();
-      
+
       console.log("[AuthProvider] Logout complete, redirecting...");
-      
+
       // Wait a bit to ensure session is cleared
-      await new Promise(resolve => setTimeout(resolve, 100));
-      
+      await new Promise((resolve) => setTimeout(resolve, 100));
+
       // Force full page reload to login page
       window.location.href = "/login";
     } catch (err) {
