@@ -164,23 +164,34 @@ export async function logoutUser(): Promise<void> {
   try {
     console.log("[auth] Logging out user...");
     
-    // Sign out from Supabase with scope 'local' to clear session
-    const { error } = await supabase.auth.signOut({ scope: 'local' });
-    
+
+    const { error } = await supabase.auth.signOut();
+
     if (error) {
       console.error("[auth] Logout error:", error);
-      // Continue even if there's an error
+      // Continue - we'll still attempt to clear client-side state
     }
-    
-    // Manually clear localStorage keys as backup
-    if (typeof window !== 'undefined') {
-      localStorage.removeItem('closednote-auth');
-      // Also clear any Supabase default keys
-      Object.keys(localStorage).forEach(key => {
-        if (key.startsWith('sb-') || key.includes('supabase')) {
-          localStorage.removeItem(key);
+
+
+    if (typeof window !== 'undefined' && window.localStorage) {
+      try {
+        const keys = Object.keys(localStorage);
+        for (const key of keys) {
+          const normalized = key.toLowerCase();
+          if (
+            normalized.includes('supabase') ||
+            normalized.startsWith('sb-') ||
+            normalized.includes('auth') ||
+            normalized.includes('session') ||
+            normalized.includes('token') ||
+            normalized.includes('closednote-auth')
+          ) {
+            localStorage.removeItem(key);
+          }
         }
-      });
+      } catch (e) {
+        console.warn('[auth] Failed to clean localStorage keys during logout', e);
+      }
     }
     
     console.log("[auth] Logout successful");
