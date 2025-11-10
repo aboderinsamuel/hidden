@@ -74,6 +74,12 @@ closedNote runs on **Supabase**, which provides both authentication and secure c
 
 ![SQL Screenshot 2](./screenshots/sql2.png)
 
+#### 🏛️ Public Schema
+
+![Public schema diagram](./screenshots/postgresSchema.png)
+
+_Public schema diagram showing tables and relationships used by closedNote._
+
 > Every user's data is tied to their `auth.uid()`. No mix-ups, no leaks.
 
 ---
