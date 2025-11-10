@@ -15,19 +15,24 @@ if (supabaseUrl && !supabaseUrl.startsWith('http')) {
   console.error("❌ Invalid NEXT_PUBLIC_SUPABASE_URL format. Must start with http:// or https://");
 }
 
-// Create client with better error handling and timeout settings
+// Create client with session persistence disabled for incognito-like behavior
+// This prevents caching issues while maintaining auth functionality
 export const supabase = createClient(
   supabaseUrl || "https://placeholder.supabase.co",
   supabaseAnonKey || "placeholder-key",
   {
     auth: {
-      persistSession: true,
+      persistSession: false, // Don't cache sessions - forces fresh auth check
       autoRefreshToken: true,
-      detectSessionInUrl: false,
+      detectSessionInUrl: true,
+      flowType: 'pkce',
     },
     global: {
       headers: {
         'x-client-info': 'closednote@0.1.0',
+        'Cache-Control': 'no-cache, no-store, must-revalidate',
+        'Pragma': 'no-cache',
+        'Expires': '0',
       },
     },
     db: {

@@ -21,6 +21,7 @@ export function usePrompts() {
       console.log("[usePrompts] No user logged in, clearing prompts");
       setPrompts([]);
       setLoading(false);
+      setError(null);
       return;
     }
 
@@ -34,6 +35,7 @@ export function usePrompts() {
     } catch (err) {
       console.error("[usePrompts] Failed to load prompts:", err);
       setError("Failed to load prompts");
+      setPrompts([]);
     } finally {
       setLoading(false);
     }

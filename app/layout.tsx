@@ -10,6 +10,10 @@ export const metadata: Metadata = {
   description: "",
 };
 
+// Disable caching for the entire app - makes it behave like incognito mode
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export default function RootLayout({
   children,
 }: {

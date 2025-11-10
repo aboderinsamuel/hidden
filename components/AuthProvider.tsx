@@ -43,20 +43,40 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
       logSupabaseHealth().catch(console.error);
     }
 
-    // Initialize user from session
-    getCurrentUser().then((currentUser) => {
-      console.log("[AuthProvider] Initial user:", currentUser);
-      setUser(currentUser);
-      setLoading(false);
-    });
+    let mounted = true;
+
+    // Simple initialization - no session persistence to manage
+    const initializeAuth = async () => {
+      try {
+        const currentUser = await getCurrentUser();
+        if (mounted) {
+          console.log("[AuthProvider] Initial user:", currentUser);
+          setUser(currentUser);
+        }
+      } catch (error) {
+        console.error("[AuthProvider] Error initializing auth:", error);
+        if (mounted) {
+          setUser(null);
+        }
+      } finally {
+        if (mounted) {
+          setLoading(false);
+        }
+      }
+    };
+
+    initializeAuth();
 
     // Listen to auth state changes
     const unsubscribe = onAuthStateChange((updatedUser) => {
-      console.log("[AuthProvider] Auth state changed:", updatedUser);
-      setUser(updatedUser);
+      if (mounted) {
+        console.log("[AuthProvider] Auth state changed:", updatedUser);
+        setUser(updatedUser);
+      }
     });
 
     return () => {
+      mounted = false;
       unsubscribe();
     };
   }, []);
@@ -90,23 +110,25 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     console.log("[AuthProvider] Logout requested");
 
     try {
-      // Sign out from Supabase first
+      // Clear user state immediately for instant UI feedback
+      setUser(null);
+      
+      // Sign out from Supabase (simple, no cache to manage)
       await logoutUser();
 
-      console.log("[AuthProvider] Supabase signout complete");
+      console.log("[AuthProvider] Logout complete, redirecting...");
 
-      // Clear user state
-      setUser(null);
-
-      console.log("[AuthProvider] State cleared, redirecting...");
-
-      // Force full page reload to login page to clear all state
-      window.location.replace("/login");
+      // Redirect to login page
+      if (typeof window !== 'undefined') {
+        window.location.href = "/login";
+      }
     } catch (err) {
       console.error("[AuthProvider] Logout failed:", err);
       // Still clear state and redirect even if there's an error
       setUser(null);
-      window.location.replace("/login");
+      if (typeof window !== 'undefined') {
+        window.location.href = "/login";
+      }
     }
   };
 

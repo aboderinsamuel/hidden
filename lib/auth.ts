@@ -32,6 +32,12 @@ export async function registerUser(
 
     if (error) {
       console.error("[auth] Signup error:", error);
+      
+      // Check if user already exists
+      if (error.message.includes("already registered") || error.message.includes("already been registered")) {
+        return { ok: false, error: "This email is already registered. Please login instead." };
+      }
+      
       return { ok: false, error: error.message || "Failed to sign up" };
     }
 
@@ -42,11 +48,11 @@ export async function registerUser(
     console.log("[auth] Signup successful:", data.user.id);
     console.log("[auth] Session exists:", !!data.session);
     
-    // Always require email confirmation for new signups
-    // Users must verify their email before they can access the app
-    const needsEmailConfirmation = true;
+    // Check if user already exists (Supabase might return success for existing users)
+    // If identities array is empty, it means email confirmation is needed
+    const needsEmailConfirmation = !data.session || (data.user.identities && data.user.identities.length === 0);
     
-    console.log("[auth] Email confirmation required");
+    console.log("[auth] Email confirmation required:", needsEmailConfirmation);
     
     return { ok: true, needsEmailConfirmation };
   } catch (err) {
@@ -164,40 +170,16 @@ export async function logoutUser(): Promise<void> {
   try {
     console.log("[auth] Logging out user...");
     
-
+    // Simple logout - no cache management needed since persistSession = false
     const { error } = await supabase.auth.signOut();
 
     if (error) {
       console.error("[auth] Logout error:", error);
-      // Continue - we'll still attempt to clear client-side state
-    }
-
-
-    if (typeof window !== 'undefined' && window.localStorage) {
-      try {
-        const keys = Object.keys(localStorage);
-        for (const key of keys) {
-          const normalized = key.toLowerCase();
-          if (
-            normalized.includes('supabase') ||
-            normalized.startsWith('sb-') ||
-            normalized.includes('auth') ||
-            normalized.includes('session') ||
-            normalized.includes('token') ||
-            normalized.includes('closednote-auth')
-          ) {
-            localStorage.removeItem(key);
-          }
-        }
-      } catch (e) {
-        console.warn('[auth] Failed to clean localStorage keys during logout', e);
-      }
     }
     
     console.log("[auth] Logout successful");
   } catch (err) {
     console.error("[auth] Logout error:", err);
-    // Don't throw - we still want to clear local state
   }
 }
 

@@ -24,11 +24,13 @@ function HomeContent() {
   const [activeTag, setActiveTag] = useState<string | undefined>();
 
   useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const collection = urlParams.get("collection");
-    if (collection) setActiveCollection(collection);
-    const tag = urlParams.get("tag");
-    if (tag) setActiveTag(tag);
+    if (typeof window !== 'undefined') {
+      const urlParams = new URLSearchParams(window.location.search);
+      const collection = urlParams.get("collection");
+      if (collection) setActiveCollection(collection);
+      const tag = urlParams.get("tag");
+      if (tag) setActiveTag(tag);
+    }
   }, []);
 
   useEffect(() => {
