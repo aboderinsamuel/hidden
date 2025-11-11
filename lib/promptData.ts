@@ -107,11 +107,17 @@ export async function savePrompt(prompt: Prompt): Promise<void> {
     }
 
     // Check if prompt exists
-    const { data: existing } = await supabase
+    const { data: existing, error: checkError } = await supabase
       .from("prompts")
       .select("id")
       .eq("id", prompt.id)
-      .single();
+      .maybeSingle();
+
+    // Ignore PGRST116 error (no rows returned) - it just means the prompt doesn't exist yet
+    if (checkError && checkError.code !== 'PGRST116') {
+      console.error("[promptData] Error checking prompt existence:", checkError);
+      throw checkError;
+    }
 
     if (existing) {
       // Update existing prompt
@@ -247,7 +253,9 @@ export function groupPromptsByTag(
   const groups: Record<string, Prompt[]> = {};
   for (const p of prompts) {
     const tags = [p.collection || "uncategorized", ...(p.tags || [])];
-    for (const t of tags) {
+    // Use Set to deduplicate tags for this prompt
+    const uniqueTags = Array.from(new Set(tags));
+    for (const t of uniqueTags) {
       if (!groups[t]) groups[t] = [];
       groups[t].push(p);
     }

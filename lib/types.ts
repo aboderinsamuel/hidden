@@ -1,4 +1,4 @@
-export type PromptModel = "gpt-4" | "gpt-3.5" | "claude-3" | "gemini-pro" | "mistral"
+export type PromptModel = "gpt-4" | "gpt-3.5" | "claude-3" | "gemini-pro" | "mistral" | "zephyr" | "mixtral"
 
 export interface Prompt {
   id: string

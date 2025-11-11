@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import React from "react";
 import { SparkleBackground } from "./SparkleBackground";
 import { InfinityLogo } from "./InfinityLogo";
 
@@ -23,10 +24,18 @@ export function Layout({ children, header, sidebar }: LayoutProps) {
 
   const closeMobileSidebar = () => setMobileSidebarOpen(false);
 
+  // Clone header element and inject showMobileMenu prop if it's a Header component
+  const enhancedHeader =
+    header && React.isValidElement(header)
+      ? React.cloneElement(header as React.ReactElement<any>, {
+          showMobileMenu: !!sidebar,
+        })
+      : header;
+
   return (
     <div className="min-h-screen flex flex-col bg-neutral-50 dark:bg-neutral-950 relative">
       <SparkleBackground />
-      {header}
+      {enhancedHeader}
       <div className="flex-1 flex">
         {/* Desktop sidebar */}
         {sidebar ? <div className="hidden md:block">{sidebar}</div> : null}

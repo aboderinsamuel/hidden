@@ -10,9 +10,10 @@ interface HeaderProps {
   // onSearch retained for backward compatibility but no longer used; global palette handles search.
   onSearch?: (query: string) => void;
   promptCount: number;
+  showMobileMenu?: boolean; // Add control for mobile menu visibility
 }
 
-export function Header({ promptCount }: HeaderProps) {
+export function Header({ promptCount, showMobileMenu = true }: HeaderProps) {
   const [isAccountMenuOpen, setIsAccountMenuOpen] = useState(false);
   const accountMenuRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
@@ -43,27 +44,29 @@ export function Header({ promptCount }: HeaderProps) {
     <header className="border-b border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900">
       <div className="flex items-center justify-between px-4 sm:px-6 py-4 gap-3">
         <div className="flex items-center gap-2">
-          {/* Mobile menu button */}
-          <button
-            aria-label="Open menu"
-            className="md:hidden p-2 rounded-md hover:bg-neutral-100 dark:hover:bg-neutral-800"
-            onClick={() => window.dispatchEvent(new Event("toggle-sidebar"))}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="w-6 h-6"
+          {/* Mobile menu button - only show if sidebar exists */}
+          {showMobileMenu && (
+            <button
+              aria-label="Open menu"
+              className="md:hidden p-2 rounded-md hover:bg-neutral-100 dark:hover:bg-neutral-800"
+              onClick={() => window.dispatchEvent(new Event("toggle-sidebar"))}
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-              />
-            </svg>
-          </button>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="w-6 h-6"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+                />
+              </svg>
+            </button>
+          )}
 
           <Link href="/home" className="flex items-center gap-3 group">
             <span className="font-serif-title text-2xl font-bold text-neutral-900 dark:text-neutral-100 group-hover:opacity-80 transition-opacity">
@@ -117,6 +120,12 @@ export function Header({ promptCount }: HeaderProps) {
 
         <div className="flex items-center gap-2 sm:gap-3">
           <ThemeToggle />
+          <Link
+            href="/ocr"
+            className="hidden sm:inline-flex items-center px-3 py-1.5 rounded-full text-sm bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-800 dark:hover:bg-neutral-700 text-neutral-800 dark:text-neutral-100 transition-colors"
+          >
+            OCR
+          </Link>
           {user ? (
             <>
               <Link
