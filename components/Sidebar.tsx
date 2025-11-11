@@ -42,7 +42,7 @@ export function Sidebar({ prompts, activeTag }: SidebarProps) {
               </Link>
               {groups[tag].map((prompt) => (
                 <Link
-                  key={prompt.id}
+                  key={`${tag}-${prompt.id}`}
                   href={`/prompts/${prompt.id}`}
                   className="block text-sm text-neutral-600 dark:text-neutral-400 ml-4 mb-1 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors"
                 >
