@@ -9,6 +9,7 @@ import { Sidebar } from "@/components/Sidebar";
 import { Layout } from "@/components/Layout";
 import { PromptCollection } from "@/components/PromptCollection";
 import { UseCasesShowcase } from "@/components/UseCasesShowcase";
+import { PoweredByCarousel } from "@/components/PoweredByCarousel";
 import { usePrompts } from "@/lib/hooks/usePrompts";
 
 function HomeContent() {
@@ -76,28 +77,55 @@ function HomeContent() {
             <h1 className="font-serif-title text-4xl sm:text-5xl font-normal text-neutral-900 dark:text-neutral-100 mb-4">
               closedNote
             </h1>
+            <p className="text-lg text-neutral-600 dark:text-neutral-400 max-w-xl mx-auto">
+              Your personal prompt notebook. Create, organize, and refine AI
+              prompts with speed and clarity.
+            </p>
+          </div>
+          <div className="mb-8">
+            <div className="text-center mb-2 text-xs uppercase tracking-wide text-neutral-500 dark:text-neutral-400">
+              Powered by
+            </div>
+            <PoweredByCarousel />
           </div>
           <UseCasesShowcase />
         </div>
       ) : (
-        <div>
-          {collections.length === 0 ? (
-            <div className="text-center py-16">
-              <p className="text-neutral-500 dark:text-neutral-400">
-                No prompts found matching your filters.
-              </p>
+        <div className="max-w-5xl mx-auto w-full">
+          <div className="text-center mb-8">
+            <h1 className="font-serif-title text-4xl sm:text-5xl font-normal text-neutral-900 dark:text-neutral-100 mb-4">
+              closedNote
+            </h1>
+            <p className="text-lg text-neutral-600 dark:text-neutral-400 max-w-xl mx-auto">
+              Your personal prompt notebook. Create, organize, and refine AI
+              prompts with speed and clarity.
+            </p>
+          </div>
+          <div className="mb-8">
+            <div className="text-center mb-2 text-xs uppercase tracking-wide text-neutral-500 dark:text-neutral-400">
+              Powered by
             </div>
-          ) : (
-            <div>
-              {collections.map((collection) => (
-                <PromptCollection
-                  key={collection}
-                  collection={collection}
-                  prompts={promptsByCollection[collection]}
-                />
-              ))}
-            </div>
-          )}
+            <PoweredByCarousel />
+          </div>
+          <div>
+            {collections.length === 0 ? (
+              <div className="text-center py-16">
+                <p className="text-neutral-500 dark:text-neutral-400">
+                  No prompts found matching your filters.
+                </p>
+              </div>
+            ) : (
+              <div>
+                {collections.map((collection) => (
+                  <PromptCollection
+                    key={collection}
+                    collection={collection}
+                    prompts={promptsByCollection[collection]}
+                  />
+                ))}
+              </div>
+            )}
+          </div>
         </div>
       )}
     </Layout>
