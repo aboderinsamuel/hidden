@@ -9,6 +9,7 @@ import { Sidebar } from "@/components/Sidebar";
 import { Layout } from "@/components/Layout";
 import { PromptCollection } from "@/components/PromptCollection";
 import { UseCasesShowcase } from "@/components/UseCasesShowcase";
+import { PoweredByCarousel } from "@/components/PoweredByCarousel";
 import { usePrompts } from "@/lib/hooks/usePrompts";
 
 function HomeContent() {
@@ -24,7 +25,7 @@ function HomeContent() {
   const [activeTag, setActiveTag] = useState<string | undefined>();
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
       const urlParams = new URLSearchParams(window.location.search);
       const collection = urlParams.get("collection");
       if (collection) setActiveCollection(collection);
@@ -63,6 +64,15 @@ function HomeContent() {
         ) : null
       }
     >
+      <div className="max-w-5xl mx-auto w-full">
+        <div className="mb-6">
+          <div className="text-center mb-2 text-xs uppercase tracking-wide text-neutral-500 dark:text-neutral-400">
+            Powered by
+          </div>
+          <PoweredByCarousel />
+        </div>
+      </div>
+
       {error ? (
         <div className="max-w-2xl mx-auto">
           <div className="p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg text-red-700 dark:text-red-400">

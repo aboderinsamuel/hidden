@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Header } from "@/components/Header";
 import { Layout } from "@/components/Layout";
 
@@ -21,6 +22,122 @@ export default function DocsPage() {
             works under the hood, and what makes it special.
           </p>
         </div>
+
+        {/* Tech Stack Logos */}
+        <section className="mb-16">
+          <h2 className="text-2xl font-semibold text-neutral-900 dark:text-neutral-100 mb-6 text-center">
+            Built With Modern Tech
+          </h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 items-center justify-items-center">
+            <div className="flex flex-col items-center gap-2">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg"
+                alt="Next.js"
+                className="w-16 h-16 dark:invert"
+              />
+              <span className="text-xs text-neutral-600 dark:text-neutral-400">
+                Next.js
+              </span>
+            </div>
+            <div className="flex flex-col items-center gap-2">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
+                alt="React"
+                className="w-16 h-16"
+              />
+              <span className="text-xs text-neutral-600 dark:text-neutral-400">
+                React
+              </span>
+            </div>
+            <div className="flex flex-col items-center gap-2">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg"
+                alt="TypeScript"
+                className="w-16 h-16"
+              />
+              <span className="text-xs text-neutral-600 dark:text-neutral-400">
+                TypeScript
+              </span>
+            </div>
+            <div className="flex flex-col items-center gap-2">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg"
+                alt="PostgreSQL"
+                className="w-16 h-16"
+              />
+              <span className="text-xs text-neutral-600 dark:text-neutral-400">
+                PostgreSQL
+              </span>
+            </div>
+            <div className="flex flex-col items-center gap-2">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg"
+                alt="Tailwind CSS"
+                className="w-16 h-16"
+              />
+              <span className="text-xs text-neutral-600 dark:text-neutral-400">
+                Tailwind
+              </span>
+            </div>
+            <div className="flex flex-col items-center gap-2">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="https://supabase.com/brand-assets/supabase-logo-icon.svg"
+                alt="Supabase"
+                className="w-16 h-16"
+              />
+              <span className="text-xs text-neutral-600 dark:text-neutral-400">
+                Supabase
+              </span>
+            </div>
+            <div className="flex flex-col items-center gap-2">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="https://huggingface.co/front/assets/huggingface_logo-noborder.svg"
+                alt="Hugging Face"
+                className="w-16 h-16"
+              />
+              <span className="text-xs text-neutral-600 dark:text-neutral-400">
+                Hugging Face
+              </span>
+            </div>
+            <div className="flex flex-col items-center gap-2">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vercel/vercel-original.svg"
+                alt="Vercel"
+                className="w-16 h-16 dark:invert"
+              />
+              <span className="text-xs text-neutral-600 dark:text-neutral-400">
+                Vercel
+              </span>
+            </div>
+            <div className="flex flex-col items-center gap-2">
+              <svg
+                className="w-16 h-16"
+                viewBox="0 0 128 128"
+                fill="currentColor"
+              >
+                <path
+                  d="M64 0C28.7 0 0 28.7 0 64s28.7 64 64 64 64-28.7 64-64S99.3 0 64 0zm0 120C33.1 120 8 94.9 8 64S33.1 8 64 8s56 25.1 56 56-25.1 56-56 56z"
+                  className="text-neutral-400"
+                />
+                <path
+                  d="M85.3 42.7l-32 32-14.6-14.6-5.7 5.7 20.3 20.3 37.7-37.7z"
+                  className="text-green-500"
+                />
+              </svg>
+              <span className="text-xs text-neutral-600 dark:text-neutral-400">
+                Tesseract.js
+              </span>
+            </div>
+          </div>
+        </section>
 
         <div className="space-y-16">
           {/* Why This Exists */}
@@ -99,6 +216,10 @@ export default function DocsPage() {
                     <li>
                       <span className="font-medium">RLS</span> (Row Level
                       Security) on all tables
+                    </li>
+                    <li>
+                      <span className="font-medium">Hugging Face</span> for AI
+                      OCR and chat models
                     </li>
                     <li>
                       <span className="font-medium">Real-time sync</span>{" "}

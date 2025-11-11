@@ -31,16 +31,16 @@ Completely open source, open to contributions, and continuously improving.
 
 ### ⚙️ Tech Stack
 
-| Part     | Tool / Framework                            |
-| -------- | ------------------------------------------- |
-| Frontend | Next.js + TailwindCSS                       |
-| Backend  | Supabase (PostgreSQL + Auth + RLS)          |
-| Hosting  | Vercel                                      |
-| Auth     | Supabase Magic Links / Email                |
-| OCR      | Hugging Face TrOCR + Tesseract.js fallback  |
-| AI Chat  | Hugging Face Zephyr/Mixtral models          |
-| Storage  | Browser localStorage + Supabase sync        |
-| Database | Postgres tables: `users`, `prompts`, `tags` |
+<div align="center">
+
+| Frontend | Backend | AI/OCR | Database | Deployment |
+|:--------:|:-------:|:------:|:--------:|:----------:|
+| <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" width="40" height="40" alt="Next.js"/><br/>**Next.js 14** | <img src="https://supabase.com/brand-assets/supabase-logo-icon.svg" width="40" height="40" alt="Supabase"/><br/>**Supabase** | <img src="https://huggingface.co/front/assets/huggingface_logo-noborder.svg" width="40" height="40" alt="Hugging Face"/><br/>**Hugging Face** | <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" width="40" height="40" alt="PostgreSQL"/><br/>**PostgreSQL** | <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vercel/vercel-original.svg" width="40" height="40" alt="Vercel"/><br/>**Vercel** |
+| <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" width="40" height="40" alt="React"/><br/>**React 18** | JWT Auth | TrOCR Models | RLS Policies | Auto Deploy |
+| <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" width="40" height="40" alt="TypeScript"/><br/>**TypeScript** | API Routes | Zephyr Chat | Real-time Sync | Edge Functions |
+| <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" width="40" height="40" alt="Tailwind"/><br/>**Tailwind CSS** | Storage | Tesseract.js | Migrations | Preview URLs |
+
+</div>
 
 ---
 
